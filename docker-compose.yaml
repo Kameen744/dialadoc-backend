@@ -18,10 +18,8 @@ services:
       - .:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      my_network:
-        name: laravel
-        external: true
-        
+      - laravel
+
   # Nginx service
   web:
     image: nginx:alpine
