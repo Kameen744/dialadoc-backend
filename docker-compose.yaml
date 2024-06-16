@@ -18,7 +18,9 @@ services:
       - .:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - laravel
+      my_network:
+        name: laravel
+        external: true
 
   # Nginx service
   web:
@@ -32,7 +34,9 @@ services:
       - .:/var/www
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
-      - laravel
+      my_network:
+        name: laravel
+        external: true
 
   # MySQL Service
   db:
@@ -50,7 +54,9 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      - laravel
+      my_network:
+        name: laravel
+        external: true
 
 networks:
   laravel:
