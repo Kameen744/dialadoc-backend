@@ -18,7 +18,7 @@ services:
       - .:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - laravel
+      - 
     command: sh -c "composer install && php artisan migrate && php-fpm"
 
   # Nginx service
@@ -49,7 +49,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      - laravel
+      - 
 
 networks:
   laravel:
