@@ -18,8 +18,7 @@ services:
       - .:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - lksgkgw
-    command: sh -c "composer install && php artisan migrate && php-fpm"
+      - laravel
 
   # Nginx service
   web:
@@ -28,10 +27,12 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "3000:3000"
+      - "3001:80"
     volumes:
       - .:/var/www
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - laravel
 
   # MySQL Service
   db:
@@ -49,7 +50,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      - lksgkgw
+      - laravel
 
 networks:
   laravel:
