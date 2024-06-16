@@ -1,5 +1,5 @@
 server {
-    listen 80;
+    listen 3000;
     index index.php index.html;
     server_name localhost;
     root /var/www/public;
@@ -12,8 +12,10 @@ server {
         try_files $uri =404;
         fastcgi_pass app:9000;
         fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
+        internal;
     }
 
     location ~ /\.ht {
