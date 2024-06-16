@@ -21,7 +21,7 @@ services:
       my_network:
         name: laravel
         external: true
-
+        
   # Nginx service
   web:
     image: nginx:alpine
@@ -34,9 +34,7 @@ services:
       - .:/var/www
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
-      my_network:
-        name: laravel
-        external: true
+      - laravel
 
   # MySQL Service
   db:
@@ -54,9 +52,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      my_network:
-        name: laravel
-        external: true
+      - laravel
 
 networks:
   laravel:
